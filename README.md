@@ -1,10 +1,10 @@
-# Tripzy 🌍
+# Tripzy - A modern Travel & Tour Platform 🌍
 
-[![Next.js](https://img.shields.io/badge/Next.js-13.4-black?logo=next.js)](https://nextjs.org/) 
-[![React](https://img.shields.io/badge/React-18-blue?logo=react)](https://reactjs.org/) 
+[![Next.js](https://img.shields.io/badge/Next.js-16.0-black?logo=next.js)](https://nextjs.org/) 
+[![React](https://img.shields.io/badge/React-19-blue?logo=react)](https://reactjs.org/) 
 [![Node.js](https://img.shields.io/badge/Node.js-18-green?logo=node.js)](https://nodejs.org/) 
 [![MongoDB](https://img.shields.io/badge/MongoDB-6.0-green?logo=mongodb)](https://www.mongodb.com/) 
-[![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.3-blue?logo=tailwind-css)](https://tailwindcss.com/) 
+[![TailwindCSS](https://img.shields.io/badge/TailwindCSS-4-blue?logo=tailwind-css)](https://tailwindcss.com/) 
 [![License](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
 
 > **Plan, Explore, and Book Trusted Local Guides – All in One Place**  
@@ -20,7 +20,7 @@ Tripzy is a modern Travel & Tour Platform that allows travelers to **plan custom
 - [Project Structure](#project-structure)
 - [Database Structure](#database-structure)
 - [Getting Started](#getting-started)
-- [Screenshots / UI Preview](#screenshots--ui-preview)
+- [UI Preview](#ui-preview)
 - [Future Enhancements](#future-enhancements)
 - [License](#license)
 
