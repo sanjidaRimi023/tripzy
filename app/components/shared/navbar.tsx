@@ -1,108 +1,12 @@
 "use client"
 import React, { useState } from 'react';
-import { useTheme } from 'next-themes';
-
-// Icons from lucide-react, commonly used with shadcn/ui
-const MenuIcon = ({ className }: { className?: string }) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    className={className}
-  >
-    <line x1="4" x2="20" y1="12" y2="12" />
-    <line x1="4" x2="20" y1="6" y2="6" />
-    <line x1="4" x2="20" y1="18" y2="18" />
-  </svg>
-);
-
-const XIcon = ({ className }: { className?: string }) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    className={className}
-  >
-    <path d="M18 6 6 18" />
-    <path d="m6 6 12 12" />
-  </svg>
-);
-
-const MountainIcon = ({ className }: { className?: string }) => (
-    <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        className={className}
-    >
-        <path d="m8 3 4 8 5-5 5 15H2L8 3z" />
-    </svg>
-);
-
-const SunIcon = ({ className }: { className?: string }) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="20"
-    height="20"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    className={className}
-  >
-    <circle cx="12" cy="12" r="4" />
-    <path d="M12 2v2" />
-    <path d="M12 20v2" />
-    <path d="m4.93 4.93 1.41 1.41" />
-    <path d="m17.66 17.66 1.41 1.41" />
-    <path d="M2 12h2" />
-    <path d="M20 12h2" />
-    <path d="m6.34 17.66-1.41 1.41" />
-    <path d="m19.07 4.93-1.41 1.41" />
-  </svg>
-);
-
-const MoonIcon = ({ className }: { className?: string }) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="20"
-    height="20"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    className={className}
-  >
-    <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
-  </svg>
-);
+import { Menu, Moon, Mountain, Sun, X } from 'lucide-react';
+import ModeBtn from '../customs/theme-btn';
 
 const Navbar = () => {
   // State to manage the visibility of the mobile menu
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { theme, setTheme } = useTheme();
+
 
   // Navigation links data
   const navLinks = [
@@ -112,9 +16,6 @@ const Navbar = () => {
     { href: "#", label: "Contact" },
   ];
 
-  const toggleTheme = () => {
-    setTheme(theme === 'dark' ? 'light' : 'dark');
-  };
 
   return (
     <section className="bg-white/80 dark:bg-black/80 backdrop-blur-sm sticky top-0 z-50 w-full border-b border-gray-200 dark:border-gray-700">
@@ -124,7 +25,7 @@ const Navbar = () => {
           {/* Logo Section */}
           <div className="shrink-0">
             <a href="#" className="flex items-center gap-2">
-               <MountainIcon className="h-6 w-6 text-gray-900 dark:text-white" />
+               <Mountain className="h-6 w-6 text-gray-900 dark:text-white" />
               <span className="text-lg font-semibold text-gray-900 dark:text-white">Acme Inc</span>
             </a>
           </div>
@@ -149,17 +50,7 @@ const Navbar = () => {
              </a>
 
             {/* Theme Toggle Button */}
-            <button
-              onClick={toggleTheme}
-              className="p-2 rounded-md text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-500 dark:focus:ring-gray-400 transition-colors duration-300"
-              aria-label="Toggle theme"
-            >
-              {theme === 'dark' ? (
-                <SunIcon className="h-5 w-5" />
-              ) : (
-                <MoonIcon className="h-5 w-5" />
-              )}
-            </button>
+           <ModeBtn/>
 
             {/* Mobile Menu Button */}
             <div className="md:hidden">
@@ -169,7 +60,7 @@ const Navbar = () => {
                 aria-expanded={isMenuOpen}
               >
                 <span className="sr-only">Open main menu</span>
-                {isMenuOpen ? <XIcon className="h-6 w-6" /> : <MenuIcon className="h-6 w-6" />}
+                {isMenuOpen ? <X/> : <Menu/>}
               </button>
             </div>
           </div>
