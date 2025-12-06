@@ -18,7 +18,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative dark:text-white dark:bg-[#0f172a] overflow-hidden pt-20 pb-10">
+    <footer className="relative dark:text-white dark:bg-[#0f172a] overflow-hidden pt-20 pb-10 border rounded-t-[90px]">
      
       <div className="absolute top-0 left-0 w-full h-1 bg-linear-to-r from-transparent via-primary to-transparent opacity-50" />
       <div className="absolute -top-[200px] -right-[200px] w-[500px] h-[500px] bg-teal-500/10 rounded-full blur-[100px]" />
