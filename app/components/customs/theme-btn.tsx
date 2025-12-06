@@ -42,7 +42,7 @@ const ModeBtn = () => {
               exit={{ rotate: 90, scale: 0 }}
               transition={{ duration: 0.3 }}
             >
-              <Sun className="h-[1.2rem] w-[1.2rem] text-yellow-400" />
+              <Sun className="h-[1.2rem] w-[1.2rem] text-primary" />
             </motion.div>
           ) : (
             <motion.div
@@ -52,7 +52,7 @@ const ModeBtn = () => {
               exit={{ rotate: -90, scale: 0 }}
               transition={{ duration: 0.3 }}
             >
-              <Moon className="h-[1.2rem] w-[1.2rem] text-blue-400" />
+              <Moon className="h-[1.2rem] w-[1.2rem] text-primary" />
             </motion.div>
           )}
         </AnimatePresence>
