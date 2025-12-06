@@ -12,104 +12,94 @@ import ModeBtn from "../customs/theme-btn";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { MenuItemType, SingleMenuProps } from "@/app/lib/types/navbar";
 
-const Navbar = () => {
+const menus: MenuItemType[] = [
+  { path: "/", label: "Home", icon: <Home size={20} /> },
+  { path: "/tours", label: "Tours", icon: <Globe size={20} /> },
+  { path: "/plans", label: "Plans", icon: <SquareDashedKanban size={20} /> },
+  { path: "/guides", label: "Guides", icon: <MapMinus size={20} /> },
+];
+
+const MenuItem: React.FC<SingleMenuProps> = ({ menu, isActive }) => (
+  <Link
+    href={menu.path}
+    className="relative text-sm xl:text-base font-semibold text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition flex items-center gap-1 whitespace-nowrap"
+  >
+    {menu.icon}
+    {menu.label}
+
+    {isActive && (
+      <span className="absolute left-0 -bottom-1 w-full h-1 rounded-full bg-primary animate-[underlineExpand_0.8s]" />
+    )}
+  </Link>
+);
+
+const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathName = usePathname();
-
-  // Navigation links data
-  const menus = [
-    { path: "/", label: "Home", icon: <Home size={20} /> },
-    { path: "/tours", label: "Tours", icon: <Globe size={20} /> },
-    { path: "/plans", label: "Plans", icon: <SquareDashedKanban size={20} /> },
-    { path: "/guides", label: "Guides", icon: <MapMinus size={20} /> },
-  ];
 
   return (
     <section className="border-b backdrop-blur-sm sticky top-0 z-50 w-full">
       <div className="container mx-auto px-4 py-2">
         <div className="flex items-center justify-between h-16">
-          {/* Logo Section */}
+          {/* Logo */}
           <div className="shrink-0">
             <Image
               src="/tripzylogo2.png"
               width={200}
               height={200}
-              alt="tripzy logo section"
+              alt="tripzy logo"
             />
           </div>
 
-          {/* Desktop Navigation */}
+          {/* Desktop Menu */}
           <nav className="hidden md:flex items-center gap-6">
-            {menus.map((menu, idx) => {
-              const isActive = pathName === menu.path;
-              return (
-                <Link
-                  key={idx}
-                  href={menu.path}
-                  className="relative text-sm xl:text-base font-semibold text-gray-700 dark:text-gray-300 dark:hover:text-primary transition whitespace-nowrap flex items-center gap-1 hover:text-primary"
-                >
-                  {menu.icon}
-                  {menu.label}
-
-                  {isActive && (
-                    <span className="absolute left-0 -bottom-1 w-full h-1 rounded-full bg-primary animate-[underlineExpand_0.8s]" />
-                  )}
-                </Link>
-              );
-            })}
+            {menus.map((menu) => (
+              <MenuItem
+                key={menu.path}
+                menu={menu}
+                isActive={pathName === menu.path}
+              />
+            ))}
           </nav>
 
+      
           <div className="flex items-center gap-4">
             <Link
               href="/"
-              className="hidden sm:inline-flex items-center justify-center rounded-md text-sm font-medium h-10 px-4 py-2 bg-gray-900 dark:bg-white text-white dark:text-gray-900 hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors duration-300"
+              className="hidden sm:inline-flex items-center justify-center h-10 px-4 py-2 rounded-md text-sm font-medium bg-gray-900 dark:bg-white text-white dark:text-gray-900 hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors duration-300"
             >
               Get Started
             </Link>
+
             <ModeBtn />
 
-            <div className="md:hidden">
-              <button
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="inline-flex items-center justify-center p-2 rounded-md text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors duration-300"
-                aria-expanded={isMenuOpen}
-              >
-                <span className="sr-only">Open main menu</span>
-                {isMenuOpen ? <X /> : <Menu />}
-              </button>
-            </div>
+            <button
+              onClick={() => setIsMenuOpen((prev) => !prev)}
+              className="md:hidden p-2 rounded-md text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition"
+            >
+              {isMenuOpen ? <X /> : <Menu />}
+            </button>
           </div>
         </div>
       </div>
 
-      {/* Mobile Menu Dropdown (Sheet) */}
+      {/* Mobile Menu */}
       {isMenuOpen && (
-        <div
-          className="md:hidden border-t border-gray-200 dark:border-gray-700"
-          id="mobile-menu"
-        >
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-          {menus.map((menu, idx) => {
-              const isActive = pathName === menu.path;
-              return (
-                <Link
-                  key={idx}
-                  href={menu.path}
-                  className="relative text-sm xl:text-base font-semibold text-gray-700 dark:text-gray-300 dark:hover:text-primary transition whitespace-nowrap flex items-center gap-1 hover:text-primary"
-                >
-                  {menu.icon}
-                  {menu.label}
+        <div className="md:hidden border-t border-gray-200 dark:border-gray-700">
+          <div className="px-3 py-3 space-y-2">
+            {menus.map((menu) => (
+              <MenuItem
+                key={menu.path}
+                menu={menu}
+                isActive={pathName === menu.path}
+              />
+            ))}
 
-                  {isActive && (
-                    <span className="absolute left-0 -bottom-1 w-full h-1 rounded-full bg-primary animate-[underlineExpand_0.8s]" />
-                  )}
-                </Link>
-              );
-            })}
             <Link
               href="/"
-              className="w-full mt-2 text-center items-center justify-center rounded-md text-sm font-medium h-10 px-4 py-2 bg-gray-900 dark:bg-white text-white dark:text-gray-900 hover:bg-gray-800 dark:hover:bg-gray-100 block transition-colors duration-300"
+              className="block text-center h-10 px-4 py-2 rounded-md text-sm font-medium bg-gray-900 dark:bg-white text-white dark:text-gray-900 hover:bg-gray-800 dark:hover:bg-gray-100 transition"
             >
               Get Started
             </Link>
