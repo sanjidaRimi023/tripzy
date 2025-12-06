@@ -26,13 +26,13 @@ const Navbar = () => {
   ];
 
   return (
-    <section className="bg-white/80 border-b dark:bg-black/80 backdrop-blur-sm sticky top-0 z-50 w-full">
+    <section className="border-b backdrop-blur-sm sticky top-0 z-50 w-full">
       <div className="container mx-auto px-4 py-2">
         <div className="flex items-center justify-between h-16">
           {/* Logo Section */}
           <div className="shrink-0">
             <Image
-              src="/tripzylogo.png"
+              src="/tripzylogo2.png"
               width={200}
               height={200}
               alt="tripzy logo section"
